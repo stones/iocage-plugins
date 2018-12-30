@@ -1,0 +1,20 @@
+{
+    "pkgs": [
+        "nginx",
+        "git",
+        "wget",
+        "vim-tiny",
+        "php70",
+        "php70-curl",
+        "php70-pdo",
+        "php70-sqlite3",
+        "php70-simplexml",
+        "php70-zip",
+        "php70-openssl",
+        "curl",
+        "php70-hash",
+        "php70-json",
+        "php70-session",
+        "php70-pdo_sqlite"
+    ]
+}

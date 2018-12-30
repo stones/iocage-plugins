@@ -11,3 +11,4 @@ These were shamelessly taken and adapted from [FN11.2 iocage jails - Plex, Tautu
 ## Plugins
 
 - [NZBGet](./nzbget/README.md)
+- [Organizr](./organizr/README.md)
