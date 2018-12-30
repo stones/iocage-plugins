@@ -6,12 +6,10 @@ iocage exec organizr mkdir -p /mnt/config
 iocage fstab -a organizr /mnt/Tank/configs/organizr /mnt/config nullfs rw 0 0
 
 # Update the php fpm config
-# I shouldn't have to copy the entire file, but it sed and echo didn't work so ...
-cp ./php-fpm.conf  /mnt/iocage/jails/organizr/root/usr/local/etc/php-fpm.conf
-# iocage exec organizr echo 'listen=/var/run/php-fpm.sock' >> /usr/local/etc/php-fpm.conf
-# iocage exec organizr echo 'listen.owner=www' >> /usr/local/etc/php-fpm.conf
-# iocage exec organizr echo 'listen.group=www' >> /usr/local/etc/php-fpm.conf
-# iocage exec organizr echo 'listen.mode=0660' >> /usr/local/etc/php-fpm.conf
+iocage exec organizr "echo 'listen=/var/run/php-fpm.sock' >> /usr/local/etc/php-fpm.conf"
+iocage exec organizr "echo 'listen.owner=www' >> /usr/local/etc/php-fpm.conf"
+iocage exec organizr "echo 'listen.group=www' >> /usr/local/etc/php-fpm.conf"
+iocage exec organizr "echo 'listen.mode=0660' >> /usr/local/etc/php-fpm.conf"
 
 # Update the PHP ini
 iocage exec organizr cp /usr/local/etc/php.ini-production /usr/local/etc/php.ini
