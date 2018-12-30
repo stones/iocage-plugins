@@ -1,0 +1,7 @@
+{
+    "pkgs": [
+        "ca_root_nss",
+        "wget",
+        "vim-tiny"
+    ]
+}
