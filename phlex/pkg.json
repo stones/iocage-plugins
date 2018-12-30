@@ -1,0 +1,16 @@
+{
+    "pkgs": [
+        "nginx",
+        "git",
+        "php70",
+        "php70-curl",
+        "php70-json",
+        "php70-openssl",
+        "php70-filter",
+        "php70-mbstring",
+        "php70-session",
+        "php70-simplexml",
+        "php70-xml",
+        "curl"
+    ]
+}
