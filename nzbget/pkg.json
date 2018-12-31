@@ -1,7 +1,8 @@
 {
     "pkgs": [
         "ca_root_nss",
-        "wget",
-        "vim-tiny"
+        "unrar",
+        "vim-tiny",
+        "wget"
     ]
 }
