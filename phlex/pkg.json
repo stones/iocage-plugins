@@ -10,10 +10,7 @@
         "php70-mbstring",
         "php70-session",
         "php70-simplexml",
-<<<<<<< HEAD
-=======
         "php70-xml",
->>>>>>> master
         "curl"
     ]
 }
