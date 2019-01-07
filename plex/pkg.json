@@ -1,0 +1,6 @@
+{
+    "pkgs": [
+        "plexmediaserver-plexpass",
+        "ca_root_nss"
+    ]
+}
