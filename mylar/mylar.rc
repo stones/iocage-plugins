@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+# PROVIDE: mylar
+# REQUIRE: DAEMON
+# BEFORE:  LOGIN
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# mylar_enable (bool): Set to NO by default.
+#           Set it to YES to enable it.
+# mylar_user:  The user account mylar daemon runs as what
+#           you want it to be. It uses '_sabnzbd' user by
+#           default. Do not sets it as empty or it will run
+#           as root.
+# mylar_dir:   Directory where Mylar lives.
+#           Default: /usr/local/mylar
+# mylar_data_dir:   Directory where Mylar data lives.
+#           Default: /mnt/config/data
+# mylar_pid:  The name of the pidfile to create.
+#     Default is mylar.pid in mylar_dir.
+
+. /etc/rc.subr
+
+name="mylar"
+rcvar=${name}_enable
+load_rc_config ${name}
+
+: "${mylar_enable:="YES"}"
+: "${mylar_user:="media"}"
+: "${mylar_dir:="/usr/local/mylar"}"
+: "${mylar_conf:="/mnt/config/config.ini"}"
+: "${mylar_data_dir:="/mnt/config"}"
+
+command="${mylar_dir}/Mylar.py"
+pidfile="/var/run/mylar/mylar.pid"
+start_precmd="mylar_start_precmd"
+mylar_flags="--daemon --nolaunch --datadir $mylar_data_dir --pidfile $pidfile --config $mylar_conf $mylar_flags"
+
+mylar_start_precmd() {
+        if [ $($ID -u) != 0 ]; then
+                err 1 "Must be root."
+        fi
+
+	if [ ! -d /var/run/mylar ]; then
+		install -do $mylar_user /var/run/mylar
+	fi
+}
+
+load_rc_config ${name}
+run_rc_command "$1"
