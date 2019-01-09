@@ -1,0 +1,7 @@
+{
+    "pkgs": [
+        "calibre",
+        "ca_root_nss",
+        "curl"
+    ]
+}
