@@ -2,8 +2,6 @@
 
 >The most efficient usenet downloader
 
-
-
 ## Overview
 
  This will use the official setup script to install _nzbget_ and add 2 mount points: 
