@@ -4,7 +4,7 @@
 
 ## Overview
 
-This will use the official setup script to install _nzbget_ and add 2 mount points: 
+This will use the official setup script to install _sonarr_ and add 2 mount points: 
 
 - config
 - library

@@ -25,4 +25,5 @@ ip4_addr="vnet0|192.168.1.52/24" defaultrouter="192.168.1.1"
 - [NZBGet](./nzbget/README.md)
 - [Organizr](./organizr/README.md)
 - [Plex](./plex/README.md)
+- [Radarr](./radarr/README.md)
 - [Sonarr](./sonarr/README.md)
