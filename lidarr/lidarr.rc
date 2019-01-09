@@ -1,0 +1,50 @@
+#!/bin/sh
+
+# $FreeBSD$
+#
+# PROVIDE: lidarr
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# lidarr_enable:    Set to YES to enable lidarr
+#            Default: NO
+# lidarr_user:    The user account used to run the lidarr daemon.
+#            This is optional, however do not specifically set this to an
+#            empty string as this will cause the daemon to run as root.
+#            Default: media
+# lidarr_group:    The group account used to run the lidarr daemon.
+#            This is optional, however do not specifically set this to an
+#            empty string as this will cause the daemon to run with group wheel.
+#            Default: media
+# lidarr_data_dir:    Directory where lidarr configuration
+#            data is stored.
+#            Default: /var/db/lidarr
+
+. /etc/rc.subr
+name=lidarr
+rcvar=${name}_enable
+load_rc_config $name
+
+: ${lidarr_enable:="NO"}
+: ${lidarr_user:="media"}
+: ${lidarr_group:="media"}
+: ${lidarr_data_dir:="/mnt/config"}
+
+pidfile="${lidarr_data_dir}/nzbdrone.pid"
+command="/usr/sbin/daemon"
+procname="/usr/local/bin/mono"
+command_args="-f ${procname} /usr/local/share/Lidarr/Lidarr.exe --data=${lidarr_data_dir} --nobrowser"
+
+start_precmd=lidarr_precmd
+lidarr_precmd() {
+    if [ ! -d ${lidarr_data_dir} ]; then
+    install -d -o ${lidarr_user} -g ${lidarr_group} ${lidarr_data_dir}
+    fi
+
+    export XDG_CONFIG_HOME=${lidarr_data_dir}
+}
+
+run_rc_command "$1"
