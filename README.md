@@ -28,3 +28,4 @@ ip4_addr="vnet0|192.168.1.52/24" defaultrouter="192.168.1.1"
 - [Plex](./plex/README.md)
 - [Radarr](./radarr/README.md)
 - [Sonarr](./sonarr/README.md)
+- [Tautulli](./tautulli/README.md)

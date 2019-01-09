@@ -1,0 +1,10 @@
+{
+    "pkgs": [
+        "python2",
+        "py27-sqlite3",
+        "py27-openssl",
+        "git",
+        "py27-pycryptodome",
+        "ca_root_nss"
+    ]
+}
