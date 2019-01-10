@@ -13,16 +13,16 @@ iocage fstab -a librarian /mnt/Tank/library/print /mnt/library nullfs rw 0 0
 iocage exec librarian "pw user add media -c media -u 8675309 -d /nonexistent -s /usr/bin/nologin"
 
 iocage exec librarian git clone  https://gitlab.com/LazyLibrarian/LazyLibrarian.git /usr/local/lazylibrarian
-iocage exec librarian chown -R media:media /usr/local/librarian
+iocage exec librarian chown -R media:media /usr/local/lazylibrarian
 
 # Copy service file
-iocage exec cp /usr/local/lazylibrarian/init/freebsd.initd /usr/local/etc/rc.d/librarian
-iocage exec librarian chmod +x /usr/local/etc/rc.d/librarian
+iocage exec librarian cp /usr/local/lazylibrarian/init/freebsd.initd /usr/local/etc/rc.d/lazylibrarian
+iocage exec librarian chmod +x /usr/local/etc/rc.d/lazylibrarian
 
 # Start services
-iocage exec librarian sysrc librarian_enable=YES
-iocage exec librarian sysrc librarian_user=media
-iocage exec librarian sysrc librarian_group=media
+iocage exec librarian sysrc lazylibrarian_enable=YES
+iocage exec librarian sysrc lazylibrarian_user=media
+iocage exec librarian sysrc lazylibrarian_group=media
 iocage exec librarian sysrc lazylibrarian_dir=/mnt/config
 
-iocage exec librarian service librarian start
+iocage exec librarian service lazylibrarian start
