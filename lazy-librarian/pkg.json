@@ -5,6 +5,7 @@
         "py27-openssl",
         "ca_root_nss",
         "curl",
+        "wget",
         "git"
     ]
 }
