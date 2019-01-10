@@ -23,6 +23,6 @@ iocage exec librarian chmod +x /usr/local/etc/rc.d/lazylibrarian
 iocage exec librarian sysrc lazylibrarian_enable=YES
 iocage exec librarian sysrc lazylibrarian_user=media
 iocage exec librarian sysrc lazylibrarian_group=media
-iocage exec librarian sysrc lazylibrarian_dir=/mnt/config
+iocage exec librarian sysrc lazylibrarian_datadir=/mnt/config
 
 iocage exec librarian service lazylibrarian start
