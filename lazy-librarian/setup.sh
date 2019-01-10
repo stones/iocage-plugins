@@ -12,7 +12,7 @@ iocage fstab -a librarian /mnt/Tank/library/print /mnt/library nullfs rw 0 0
 # Add media user
 iocage exec librarian "pw user add media -c media -u 8675309 -d /nonexistent -s /usr/bin/nologin"
 
-iocage exec librarian git clone  https://gitlab.com/LazyLibrarian/LazyLibrarian.git /usr/local/lazylibrarian
+iocage exec librarian git clone --depth 0 https://gitlab.com/LazyLibrarian/LazyLibrarian.git /usr/local/lazylibrarian
 iocage exec librarian chown -R media:media /usr/local/lazylibrarian
 
 # Copy service file

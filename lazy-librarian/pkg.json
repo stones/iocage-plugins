@@ -1,11 +1,12 @@
 {
     "pkgs": [
+        "ca_root_nss",
+        "curl",
+        "git",
         "python2",
         "py27-sqlite3",
         "py27-openssl",
-        "ca_root_nss",
-        "curl",
-        "wget",
-        "git"
+        "unrar",
+        "wget"
     ]
 }
