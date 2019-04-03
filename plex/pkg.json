@@ -1,6 +1,7 @@
 {
     "pkgs": [
         "plexmediaserver-plexpass",
+	"sqlite3",
         "ca_root_nss"
     ]
 }

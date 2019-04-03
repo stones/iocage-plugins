@@ -16,4 +16,11 @@ Edit the `setup.sh` script to match your requirements ( the file is heavily comm
 `./setup.sh`
 
 
+## Tips & tricks
 
+If there are items in your libary that are always at the start of the "Recently added" section:
+
+```sh
+cp /mnt/config/Plex\ Media\ Server/Plug-in\ Support/Databases/com.plexapp.plugins.library.* ~/. &&
+service plexmediaserver_plexpass stop && sqlite3 /mnt/config/Plex\ Media\ Server/Plug-in\ Support/Databases/com.plexapp.plugins.library.db "UPDATE metadata_items SET added_at = DATETIME('2019-04-03','+5 years') WHERE DATETIME(added_at) > DATETIME('now');" && service plexmediaserver_plexpass start && rm ~/com.plexapp.plugins.library.*
+```
