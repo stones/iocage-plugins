@@ -1,5 +1,5 @@
 # Create the jail
-iocage create -n "nzbget" -p ./pkg.json -r 11.2-RELEASE ip4_addr="vnet0|192.168.1.57/24" defaultrouter="192.168.1.1" vnet="on" allow_raw_sockets="1" boot="on" 
+iocage create -n "nzbget" -p ./pkg.json -r 11.2-RELEASE ip4_addr="vnet0|10.0.0.38/24" defaultrouter="10.0.0.138" vnet="on" allow_raw_sockets="1" boot="on" 
 # Add media user
 iocage exec nzbget "pw user add media -c media -u 8675309 -d /nonexistent -s /usr/bin/nologin"
 iocage exec nzbget "pw groupadd -n media -g 8675309"
@@ -7,7 +7,7 @@ iocage exec nzbget "pw groupmod media -m nzbget"
 # Ensure the rc.d folder exists
 iocage exec nzbget mkdir -p /usr/local/etc/rc.d
 # Copy the nzbget file so we can use 'service nzbget start|stop|etc'
-cp ./nzbget.rc  /mnt/iocage/jails/nzbget/root/etc/rc.d/nzbget
+cp ./nzbget.rc  /mnt/Tank/iocage/jails/nzbget/root/etc/rc.d/nzbget
 # Set permissions
 iocage exec nzbget chmod 555 /etc/rc.d/nzbget
 # Mount volumes
