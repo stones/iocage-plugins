@@ -1,5 +1,5 @@
 #Create the jail
-iocage create -n "plex" -p ./pkg.json -r 11.2-RELEASE ip4_addr="vnet0|192.168.1.50/24" defaultrouter="192.168.1.1" vnet="on" allow_raw_sockets="1" boot="on"
+iocage create -n "plex" -p ./pkg.json -r 11.2-RELEASE ip4_addr="vnet0|10.0.0.37/24" defaultrouter="10.0.0.138" vnet="on" allow_raw_sockets="1" boot="on"
 
 # Add media user
 iocage exec plex "pw user add media -c media -u 8675309 -d /nonexistent -s /usr/bin/nologin"
@@ -15,7 +15,6 @@ iocage exec plex "pkg upgrade"
 iocage fstab -a plex /mnt/Tank/configs/plex /mnt/config nullfs rw 0 0
 iocage fstab -a plex /mnt/Tank/library/audio /mnt/audio nullfs rw 0 0
 iocage fstab -a plex /mnt/Tank/library/video /mnt/video nullfs rw 0 0
-iocage fstab -a plex /mnt/Tank/library/images /mnt/images nullfs rw 0 0
 
 # Change permissions
 iocage exec plex chown -R media:media /mnt/config
