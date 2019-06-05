@@ -6,7 +6,7 @@ JAIL_NAME="paperless"
 RELEASE=$(freebsd-version | sed "s/STABLE/RELEASE/g")
 
 # Create the jail
-iocage create -n "${JAIL_NAME}" -p ./pkg.json -r "${RELEASE}" ip4_addr="{$JAIL_INTERFACE}|{$JAIL_IP}/24" defaultrouter="{$DEFAULT_ROUTER}" vnet="on" allow_raw_sockets="1" boot="on" 
+iocage create -n "{$JAIL_NAME}" -p ./pkg.json -r "${RELEASE}" ip4_addr="{$JAIL_INTERFACE}|{$JAIL_IP}/24" defaultrouter="{$DEFAULT_ROUTER}" vnet="on" allow_raw_sockets="1" boot="on" 
 
 # Add config folder
 iocage exec "{$JAIL_NAME}" mkdir -p /mnt/config
