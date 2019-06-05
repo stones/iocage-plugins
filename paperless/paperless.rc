@@ -1,0 +1,24 @@
+ #!/bin/sh
+ #
+ # PROVIDE: paperless
+ # KEYWORD: shutdown
+ #
+ # Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+ # to enable this service:
+ #
+ # nzbget_enable (bool): Set to NO by default.
+ #                       Set it to YES to enable it.
+
+ . /etc/rc.subr
+
+ name=paperless
+ rcvar=paperless_enable
+
+ load_rc_config ${name}
+
+ : ${paperless_enable:=NO}
+
+ command=gunicorn
+ command_args="--pythonpath=/usr/local/www/paperless/src paperless.wsgi -w 2"
+
+ run_rc_command "$1"
