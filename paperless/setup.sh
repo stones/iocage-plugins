@@ -12,7 +12,7 @@ iocage create -n "$JAIL_NAME" -p ./pkg.json -r "${RELEASE}" ip4_addr="$JAIL_INTE
 iocage exec "$JAIL_NAME" mkdir -p /mnt/config
 iocage fstab -a "$JAIL_NAME" /mnt/Tank/configs/paperless /mnt/config nullfs rw 0 0
 
-iocage exec "$JAIL_NAME" mkdir -p /usr/local/www
+mkdir -p $JAIL_FOLDER/root/usr/local/www
 
 # Pull down latest source
 iocage exec "$JAIL_NAME" git clone --depth 1 git clone https://github.com/the-paperless-project/paperless.git /usr/local/www/paperless
