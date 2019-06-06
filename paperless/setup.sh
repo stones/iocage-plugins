@@ -6,13 +6,13 @@ JAIL_NAME="paperless"
 RELEASE=$(freebsd-version | sed "s/STABLE/RELEASE/g")
 
 # Create the jail
-iocage create -n "$JAIL_NAME" -p ./pkg.json -r "${RELEASE}" ip4_addr="$JAIL_INTERFACE|$JAIL_IP/24" defaultrouter="$DEFAULT_ROUTER" vnet="on" allow_raw_sockets="1" boot="on" 
+iocage create -n $JAIL_NAME -p ./pkg.json -r $RELEASE ip4_addr="$JAIL_INTERFACE|$JAIL_IP/24" defaultrouter="$DEFAULT_ROUTER" vnet="on" allow_raw_sockets="1" boot="on" 
 
 # Add config folder
 iocage exec "$JAIL_NAME" mkdir -p /mnt/config
 iocage fstab -a "$JAIL_NAME" /mnt/Tank/configs/paperless /mnt/config nullfs rw 0 0
 
-mkdir -p $JAIL_FOLDER/root/usr/local/www
+mkdir -p $JAIL_FOLDER/$JAIL_NAME/usr/local/www
 
 # Pull down latest source
 iocage exec "$JAIL_NAME" git clone --depth 1 git clone https://github.com/the-paperless-project/paperless.git /usr/local/www/paperless
@@ -35,7 +35,7 @@ iocage exec "$JAIL_NAME" pip install --requirement /usr/local/www/paperless/requ
 
 iocage exec "$JAIL_NAME" /usr/local/www/paperless/src/manage.py migrate
 
-cp ./paperless.rc  "/mnt/iocage/jails/$JAIL_NAME/root/etc/rc.d/paperless"
+cp ./nzbget.rc  "/mnt/iocage/jails/$JAIL_NAME/root/etc/rc.d/paperless"
 # Copy site configuration
 cp ./site.nginx  "$JAIL_FOLDER/$JAIL_NAME/root/usr/local/etc/nginx/nginx.conf"
 
