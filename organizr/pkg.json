@@ -7,6 +7,7 @@
         "vim-tiny",
         "php73",
         "php73-curl",
+        "php73-filter",
         "php73-pdo",
         "php73-sqlite3",
         "php73-simplexml",
