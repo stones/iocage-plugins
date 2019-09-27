@@ -1,5 +1,5 @@
 # Create jail
-iocage create -n "headphones" -p ./pkg.json -r 11.2-RELEASE ip4_addr="vnet0|192.168.1.52/24" defaultrouter="192.168.1.1" vnet="on" allow_raw_sockets="1" boot="on"
+iocage create -n "headphones" -p ./pkg.json -r 11.2-RELEASE ip4_addr="vnet0|10.0.0.40/24" defaultrouter="10.0.0.138" vnet="on" allow_raw_sockets="1" boot="on"
 
 # link python 
 iocage exec headphones "ln -s /usr/local/bin/python2.7 /usr/local/bin/python"
@@ -16,7 +16,7 @@ iocage exec headphones git clone git://github.com/rembo10/headphones.git /usr/lo
 iocage exec headphones chown -R media:media /usr/local/headphones
 
 # Copy service file
-cp ./headphones.rc  /mnt/iocage/jails/headphones/root/usr/local/etc/rc.d/headphones
+cp ./headphones.rc  /mnt/Tank/iocage/jails/headphones/root/usr/local/etc/rc.d/headphones
 iocage exec headphones chmod +x /usr/local/etc/rc.d/headphones
 
 # Start services

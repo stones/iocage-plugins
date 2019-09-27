@@ -1,5 +1,5 @@
 # Create Jail
-iocage create -n "radarr" -p ./pkg.json -r 11.2-RELEASE ip4_addr="vnet0|192.168.1.55/24" defaultrouter="192.168.1.1" vnet="on" allow_raw_sockets="1" boot="on"
+iocage create -n "radarr" -p ./pkg.json -r 11.2-RELEASE ip4_addr="vnet0|10.0.0.41/24" defaultrouter="10.0.0.138" vnet="on" allow_raw_sockets="1" boot="on"
 
 # Update to Latest Repo
 iocage exec radarr "mkdir -p /usr/local/etc/pkg/repos"
@@ -33,7 +33,7 @@ iocage exec radarr chown -R media:media /usr/local/share/Radarr /mnt/config
 
 # Copy sysrc
 iocage exec radarr mkdir -p /usr/local/etc/rc.d
-cp ./radarr.rc  /mnt/iocage/jails/radarr/root/usr/local/etc/rc.d/radarr
+cp ./radarr.rc  /mnt/Tank/iocage/jails/radarr/root/usr/local/etc/rc.d/radarr
 iocage exec radarr chmod u+x /usr/local/etc/rc.d/radarr
 
 iocage exec radarr sysrc "radarr_enable=YES"

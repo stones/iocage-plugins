@@ -1,5 +1,5 @@
 # Create the jail
-iocage create -n "organizr" -p ./pkg.json -r 11.2-RELEASE ip4_addr="vnet0|192.168.1.60/24" defaultrouter="192.168.1.1" vnet="on" allow_raw_sockets="1" boot="on" 
+iocage create -n "organizr" -p ./pkg.json -r 11.2-RELEASE ip4_addr="vnet0|10.0.0.36/24" defaultrouter="10.0.0.138" vnet="on" allow_raw_sockets="1" boot="on" 
 
 # Add config folder
 iocage exec organizr mkdir -p /mnt/config
@@ -23,7 +23,7 @@ iocage exec organizr git clone --depth 1 -b v2-develop https://github.com/causef
 iocage exec organizr chown -R www:www /usr/local/www /mnt/config
 
 # Copy site configuration
-cp ./site.nginx  /mnt/iocage/jails/organizr/root/usr/local/etc/nginx/nginx.conf  
+cp ./site.nginx  /mnt/Tank/iocage/jails/organizr/root/usr/local/etc/nginx/nginx.conf  
 
 # Add php and nginx to services and start up
 iocage exec organizr sysrc nginx_enable=YES
