@@ -1,0 +1,9 @@
+{
+    "pkgs": [
+        "wget",
+        "unzip",
+        "unrar",
+        "qbittorrent-nox",
+        "ca_root_nss"
+    ]
+}
