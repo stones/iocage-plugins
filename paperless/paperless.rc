@@ -6,7 +6,7 @@
  # Add the following lines to /etc/rc.conf.local or /etc/rc.conf
  # to enable this service:
  #
- # nzbget_enable (bool): Set to NO by default.
+ # paperless_enable (bool): Set to NO by default.
  #                       Set it to YES to enable it.
 
  . /etc/rc.subr
@@ -18,7 +18,7 @@
 
  : ${paperless_enable:=NO}
 
- command=gunicorn
- command_args="--pythonpath=/usr/local/www/paperless/src paperless.wsgi -w 2"
+ command=/usr/local/bin/gunicorn
+ command_args="--pythonpath=/usr/local/www/paperless/src paperless.wsgi -w 2 --daemon"
 
  run_rc_command "$1"

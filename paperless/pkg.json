@@ -2,11 +2,12 @@
     "pkgs": [
         "nginx",
         "git",
-        "gnupg",
+        "gnupg1",
         "ImageMagick7",
         "optipng",
         "poppler",
         "postgresql96-server-9.6.13",
+	"postgresql-libpqxx",
         "python3",
         "py36-pip",
         "py36-sqlite3",
