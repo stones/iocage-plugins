@@ -1,7 +1,9 @@
 {
     "pkgs": [
+        "ca_root_nss",
+        "perl5",
         "plexmediaserver-plexpass",
-	"sqlite3",
-        "ca_root_nss"
+        "sqlite3",
+        "vim-lite"
     ]
 }

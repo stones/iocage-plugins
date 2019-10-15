@@ -15,6 +15,10 @@ Edit the `setup.sh` script to match your requirements ( the file is heavily comm
 
 `./setup.sh`
 
+## temp
+
+If you provide `PLEXPASS_USER` and `PLEXPASS_PASSWORD`  then it will use [PMS Updater](https://github.com/mstinaff/PMS_Updater) to update the Plex.
+
 
 ## Tips & tricks
 
