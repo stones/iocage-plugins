@@ -1,0 +1,7 @@
+{
+    "pkgs": [
+        "elasticsearch6", 
+        "kibana6",
+        "logstash6"
+    ]
+}

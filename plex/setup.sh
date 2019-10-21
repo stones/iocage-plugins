@@ -57,7 +57,7 @@ iocage exec "$JAIL_NAME" service plexmediaserver_plexpass start
 
 # Copy updater files
 if [[ -z "$PLEXPASS_USER" && -z "$PLEXPASS_PASSWORD" ]]; then
-iocage exec "$JAIL_NAME" wget https://raw.githubusercontent.com/mstinaff/PMS_Updater/master/PMS_Updater.sh --ouput-file ~/PMS_Updater.sh
+iocage exec "$JAIL_NAME" wget -O ~/PMS_Updater.sh https://raw.githubusercontent.com/mstinaff/PMS_Updater/master/PMS_Updater.sh
 iocage exec "$JAIL_NAME" chmod 755 ~/PMS_Updater.sh
 iocage exec "$JAIL_NAME" echo "user=$PLEXPASS_USER" > ~/creds.txt
 iocage exec "$JAIL_NAME" echo "password=$PLEXPASS_PASSWORD" >> ~/creds.txt

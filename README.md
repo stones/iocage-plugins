@@ -20,6 +20,7 @@ ip4_addr="vnet0|192.168.1.52/24" defaultrouter="192.168.1.1"
 ## Plugins
 
 - [Deluge](./deluge/README.md)
+- [Elastic stack](./elk/README.md)
 - [Headphones](./headphones/README.md)
 - [Lidarr](./lidarr/README.md)
 - [Mylar](./mylar/README.md)
