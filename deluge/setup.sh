@@ -30,13 +30,12 @@ then
 	exit 1
 fi
 
-
 iocage exec "$JAIL_NAME" mkdir /deluge 
 
 iocage exec "$JAIL_NAME" "pw user add media -c media -u 8675309 -d /media -s /usr/bin/nologin"
 iocage exec "$JAIL_NAME" "pw user add deluge -c deluge -d /deluge -s /usr/bin/nologin"
 iocage exec "$JAIL_NAME" "pw groupadd -n deluge"
-iocage exec nzbget "pw groupadd -n media -g 8675309"
+iocage exec "$JAIL_NAME" "pw groupadd -n media -g 8675309"
 
 # Create folders
 
