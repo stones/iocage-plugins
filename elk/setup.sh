@@ -1,6 +1,6 @@
 #!/bin/sh
-JAIL_IP="192.168.1.350"
-ROUTER="192.168.1.1"
+JAIL_IP="192.168.20.203"
+ROUTER="192.168.20.1"
 RELEASE=$(freebsd-version | sed "s/STABLE/RELEASE/g")
 JAIL_NAME="elk"    
 INTERFACE="vnet0"
@@ -29,36 +29,39 @@ then
 fi
 
 iocage exec "$JAIL_NAME" "pw user add media -c media -u 8675309 -d /media -s /usr/bin/nologin"
-iocage exec "$JAIL_NAME" "pw user add deluge -c deluge -d /deluge -s /usr/bin/nologin"
-iocage exec "$JAIL_NAME" "pw groupadd -n deluge"
+iocage exec "$JAIL_NAME" "pw user add deluge -c elk -d /elk -s /usr/bin/nologin"
+iocage exec "$JAIL_NAME" "pw groupadd -n elk"
 iocage exec nzbget "pw groupadd -n media -g 8675309"
 
 # Create folders
 
-iocage exec "$JAIL_NAME" mkdir -p "$JAIL_TRANSFER" "$JAIL_CONFIG"
+iocage exec "$JAIL_NAME" mkdir -p "/proc" "$JAIL_CONFIG"
 
 # Mount folders
-iocage fstab -a "$JAIL_NAME" "$LOCAL_TRANSFER" "$JAIL_TRANSFER" nullfs rw 0 0
+iocage fstab -a "$JAIL_NAME" "proc" "/proc" procfs rw 0 0
 iocage fstab -a "$JAIL_NAME" "$LOCAL_CONFIG" "$JAIL_CONFIG" nullfs rw 0 0
 
 # Set permissions on mounted folders 
 #iocage exec "$JAIL_NAME" chown -R media:media "$JAIL_TRANSFER" "$JAIL_CONFIG"
 
 # Setup the deluge
-iocage exec "$JAIL_NAME" sysrc deluged_enable=YES
-iocage exec "$JAIL_NAME" sysrc deluged_user=media
-iocage exec "$JAIL_NAME" sysrc deluged_group=media
-iocage exec "$JAIL_NAME" sysrc deluged_confdir="$JAIL_CONFIG"
+iocage exec "$JAIL_NAME" sysrc elasticsearch_enable=YES
+iocage exec "$JAIL_NAME" sysrc logstash_enable=YES
+iocage exec "$JAIL_NAME" sysrc kibana_enable=YES
+# iocage exec "$JAIL_NAME" sysrc deluged_user=media
+# iocage exec "$JAIL_NAME" sysrc deluged_group=media
+# iocage exec "$JAIL_NAME" sysrc deluged_confdir="$JAIL_CONFIG"
 
 # Setup the deluge Web client
-iocage exec "$JAIL_NAME" sysrc deluge_web_enable=YES
-iocage exec "$JAIL_NAME" sysrc deluge_web_user=media
-iocage exec "$JAIL_NAME" sysrc deluge_web_group=media
-iocage exec "$JAIL_NAME" sysrc deluge_web_confdir="$JAIL_CONFIG"
+# iocage exec "$JAIL_NAME" sysrc deluge_web_enable=YES
+# iocage exec "$JAIL_NAME" sysrc deluge_web_user=media
+# iocage exec "$JAIL_NAME" sysrc deluge_web_group=media
+# iocage exec "$JAIL_NAME" sysrc deluge_web_confdir="$JAIL_CONFIG"
 
 # Start the services
-iocage exec  "$JAIL_NAME" service deluged start
-iocage exec  "$JAIL_NAME" service deluge_web start
+iocage exec  "$JAIL_NAME" service elasticsearch start
+iocage exec  "$JAIL_NAME" service logstash start
+# iocage exec  "$JAIL_NAME" service kibana start
 
 # Restart Jail
 iocage restart "$JAIL_NAME"
