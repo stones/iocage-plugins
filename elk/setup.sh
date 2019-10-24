@@ -1,5 +1,5 @@
 #!/bin/sh
-JAIL_IP="192.168.20.203"
+JAIL_IP="192.168.20.230"
 ROUTER="192.168.20.1"
 RELEASE=$(freebsd-version | sed "s/STABLE/RELEASE/g")
 JAIL_NAME="elk"    
@@ -22,7 +22,7 @@ JAIL_CONFIG="/mnt/config"
 #fi
 
 # Create the jail
-if ! iocage create -n "${JAIL_NAME}" -p ./pkg.json -r "${RELEASE}" vnet="on" bpf="yes" dhcp="on" allow_raw_sockets="1" boot="on"  ip4_addr="${INTERFACE}|${JAIL_IP}/24" defaultrouter="${ROUTER}" allow_mount="1" allow_mount_procfs="1" enforce_statfs="1" host_hostname="${JAIL_NAME}" 
+if ! iocage create -n "${JAIL_NAME}" -p ./pkg.json -r "${RELEASE}" vnet="on" bpf="yes" allow_raw_sockets="1" boot="on"  ip4_addr="${INTERFACE}|${JAIL_IP}/24" defaultrouter="${ROUTER}" allow_mount="1" allow_mount_procfs="1" enforce_statfs="1" host_hostname="${JAIL_NAME}" 
 then
 	echo "Failed to create ${JAIL_NAME}"
 	exit 1
@@ -58,10 +58,14 @@ iocage exec "$JAIL_NAME" sysrc kibana_enable=YES
 # iocage exec "$JAIL_NAME" sysrc deluge_web_group=media
 # iocage exec "$JAIL_NAME" sysrc deluge_web_confdir="$JAIL_CONFIG"
 
+# Update the kibana config
+iocage exec "$JAIL_NAME" sed -i '' -e 's?#server.host: "localhost"?server.host: "$JAIL_IP"?g' /usr/local/etc/kibana/kibana.yml 
+iocage exec "$JAIL_NAME" echo "xpack.reporting.enabled: false" > /usr/local/etc/kibana/kibana.yml 
+
 # Start the services
 iocage exec  "$JAIL_NAME" service elasticsearch start
 iocage exec  "$JAIL_NAME" service logstash start
-# iocage exec  "$JAIL_NAME" service kibana start
+iocage exec  "$JAIL_NAME" service kibana start
 
 # Restart Jail
 iocage restart "$JAIL_NAME"
