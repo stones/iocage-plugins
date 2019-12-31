@@ -34,6 +34,9 @@ fi
 # Install pkgs
 # iocage exec "$JAIL_NAME" pkg update && pkg upgrade
 
+# Ensure mount folders exist
+iocage exec "$JAIL_NAME" mkdir -p "$JAIL_TRANSFER" "$JAIL_CONFIG" "$JAIL_LIBRARY"
+
 iocage fstab -a "$JAIL_NAME" "$LOCAL_LIBRARY" "$JAIL_LIBRARY" nullfs rw 0 0
 iocage fstab -a "$JAIL_NAME" "$LOCAL_TRANSFER" "$JAIL_TRANSFER" nullfs rw 0 0
 iocage fstab -a "$JAIL_NAME" "$LOCAL_CONFIG" "$JAIL_CONFIG" nullfs rw 0 0

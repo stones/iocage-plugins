@@ -28,7 +28,6 @@ fi
 
 # iocage exec "$JAIL_NAME" "pkg upgrade"
 
-
 # Ensure mount folders exist
 iocage exec "$JAIL_NAME" mkdir -p "$JAIL_TRANSFER" "$JAIL_CONFIG" "$JAIL_LIBRARY"
 
