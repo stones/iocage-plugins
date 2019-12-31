@@ -46,7 +46,7 @@ iocage exec "$JAIL_NAME" "fetch http://download.sonarr.tv/v2/master/mono/NzbDron
 iocage exec "$JAIL_NAME" "tar -xzvf /usr/local/share/NzbDrone.master.tar.gz -C /usr/local/share"
 iocage exec "$JAIL_NAME" rm /usr/local/share/NzbDrone.master.tar.gz
 
-iocage exec "$JAIL_NAME" chown -R media:media /usr/local/share/NzbDrone /mnt/config
+iocage exec "$JAIL_NAME" chown -R media:media /usr/local/share/NzbDrone "$JAIL_CONFIG"
 
 # Initialise the service
 iocage exec "$JAIL_NAME" sysrc "sonarr_enable=YES"
