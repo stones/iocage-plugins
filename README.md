@@ -1,4 +1,4 @@
-# IOcage Plugin Scripts
+ IOcage Plugin Scripts
 
 > These are not supposed to be used without customisation. Please don't use blindly
 
@@ -27,6 +27,8 @@ ip4_addr="vnet0|192.168.1.52/24" defaultrouter="192.168.1.1"
 - [Organizr](./organizr/README.md)
 - [Phlex](./phlex/README.md)
 - [Plex](./plex/README.md)
+- [Qbittorrent](./qbitorrent/README.md)
 - [Radarr](./radarr/README.md)
+- [Reverse Proxy](./reverse-proxy/README.md)
 - [Sonarr](./sonarr/README.md)
 - [Tautulli](./tautulli/README.md)

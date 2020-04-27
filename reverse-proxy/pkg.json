@@ -1,0 +1,11 @@
+{
+    "pkgs": [
+        "nginx",
+        "vim-tiny",
+        "openssl",
+        "py27-certbot",
+        "nginx",
+        "git",
+        "python"
+    ]
+}
